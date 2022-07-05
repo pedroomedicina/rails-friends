@@ -1,41 +1,36 @@
-<div id="friends" class="container">
-  <table class="table table-striped table-bordered">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Twitter</th>
-        <th scope="col">User</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @friends.each do |friend| %>
-        <% if current_user.id == friend.user_id %>
-          <tr>
-            <td><%= friend.first_name %></td>
-            <td><%= friend.last_name %></td>
-            <td><%= friend.email %></td>
-            <td><%= friend.phone %></td>
-            <td><%= friend.twitter %></td>
-            <td><%= friend.user_id %></td>
-            <td>
-              <%= link_to "Show", friend, class: "btn btn-link" %>
-            </td>
-            <td>
-              <%= link_to "Edit", edit_friend_path(friend), class: "btn btn-link" %>
-            </td>
-            <td>
-              <%= button_to "Destroy", friend, method: :delete, class: "btn btn-link" %>
-            </td>
-          </tr>
+<% if user_signed_in? %>
+  <div id="friends" class="container">
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col"> Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Twitter</th>
+          <th scope="col">User</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @friends.each do |friend| %>
+          <% if current_user == friend.user %>
+            <tr>
+              <td><%= link_to friend.first_name + ' ' + friend.last_name, friend %></td>
+              <td><%= friend.email %></td>
+              <td><%= friend.phone %></td>
+              <td><%= friend.twitter %></td>
+              <td><%= friend.user_id %></td>
+              <td>
+                <%= button_to "Delete", friend, method: :delete, class: "btn btn-outline-danger btn-sm" %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
-  <%= link_to "New friend", new_friend_path, class: "btn btn-secondary" %>
-</div>
+      </tbody>
+    </table>
+    <%= link_to "New friend", new_friend_path, class: "btn btn-secondary" %>
+  </div>
+<% else %>
+  <h1>Hello World</h1>
+  <p>Frist webpage in rails</p>
+<% end %>
