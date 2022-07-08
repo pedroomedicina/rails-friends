@@ -13,6 +13,7 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "erb-formatter"
 gem 'devise', '~> 4.8', '>= 4.8.1'
+gem "figaro"
 
 gem "bootsnap", require: false
 
