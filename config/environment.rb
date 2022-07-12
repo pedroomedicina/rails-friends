@@ -9,7 +9,7 @@ ActionMailer::Base.smtp_settings = {
   :password => Rails.application.credentials.dig(:sendgrid_api_key), # This is the secret sendgrid API key which was issued during API key creation
   :domain => 'friends.wgamma.com',
   :address => 'smtp.sendgrid.net',
-  :port => 465,
+  :port => 587,
   :authentication => :plain,
   :enable_starttls_auto => true
 }
